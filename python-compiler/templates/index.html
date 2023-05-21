@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block style %}
+<link rel="stylesheet" href="{% static 'index.css' %}">
+{% endblock style %}
+
+{% block content %}
+    <center class="mt-2">
+        <h2>Python Compiler</h2>
+    </center> 
+    <div class="container-fluid">
+        <div class="row justify-content-around">
+            <div id="code_div" class="col-5">
+                <form action="" id="form" method="post">
+                    {% csrf_token %}
+                    <label for="code"> <h4>Python Code  : </h4> </label>
+                    <textarea name="code" id="code" rows="15" ></textarea>
+                    <input class="btn btn-primary float-left" type="submit" onclick="send_ajax_request()" value="Compile">
+                </form> 
+            </div>
+            <div class="vl"></div>
+            <div id="code" class="col-5">
+                <label class="mt-2"> <h4> Output : </h4></label>
+                <textarea id="code_data" rows="15" readonly></textarea>
+            </div>
+        </div>
+    </div>
+{% endblock content %}
+
+{% block script %}
+<script>
+    let csrf = "{{csrf_token}}";
+    let file_path = "";
+    let media = "{{media}}";
+</script>
+<script src="{% static 'index.js' %}"></script>
+{% endblock script %}
