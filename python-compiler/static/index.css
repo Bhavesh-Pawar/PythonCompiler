@@ -27,3 +27,8 @@ body {
         display: none;
     }
 }
+
+.custom-dropdown{
+    background-color: black !important;
+    color: white !important;
+}

@@ -12,9 +12,23 @@
     <div class="container-fluid">
         <div class="row justify-content-around">
             <div id="code_div" class="col-lg-5">
-                <form action="" id="form" method="post">
+                <form action="" id="form" method="post" spellcheck="false">
                     {% csrf_token %}
-                    <label for="code"> <h4>Python Code  : </h4> </label>
+                    <div class="row">
+                        <div class="col-4">
+                            <label for="code"> <h4>Python Code  : </h4> </label>
+                        </div>
+                        <div class="col-1"></div>
+                        <div class="col-7">
+                            <label for="python_lib" class="text-end"> <h4>Available Python Library : </h4> </label>
+                            <select id="python_lib" class="form-control mb-2 custom-dropdown" aria-label="Default select example">
+                                <option value="pandas">pandas</option>
+                                <option value="numpy">numpy</option>
+                                <option value="qrcode">qrcode</option>
+                                <option value="requests">requests</option>
+                              </select>
+                        </div>
+                    </div>
                     <textarea name="code" id="code" rows="15" ></textarea>
                     <input class="btn btn-primary float-left" type="submit" onclick="send_ajax_request()" value="Compile">
                 </form> 
