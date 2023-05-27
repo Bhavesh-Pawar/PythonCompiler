@@ -19,16 +19,16 @@ $('#code').keydown(function (e) {
 });
 
 function send_ajax_request(){
-    let data = $('#code').val();
-   
+    let data = $('#code').val().trim();
+    let input = $('#input').val().trim();
     $.ajax({
         type : 'POST',
         url : '',
-        data : {'csrfmiddlewaretoken': csrf , 'code': data ,'action':'execute_code'},
+        data : {'csrfmiddlewaretoken': csrf , 'code': data ,'action':'execute_code','input':input},
         success : function (result) {
             let output = result.output;
             console.log(result.output);
-            $('#code_data').val(output);
+            $('#output').val(output);
         }
     })
 }

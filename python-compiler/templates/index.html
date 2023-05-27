@@ -11,7 +11,7 @@
     </center> 
     <div class="container-fluid">
         <div class="row justify-content-around">
-            <div id="code_div" class="col-5">
+            <div id="code_div" class="col-lg-5">
                 <form action="" id="form" method="post">
                     {% csrf_token %}
                     <label for="code"> <h4>Python Code  : </h4> </label>
@@ -20,10 +20,18 @@
                 </form> 
             </div>
             <div class="vl"></div>
-            <div id="code" class="col-5">
-                <label class="mt-2"> <h4> Output : </h4></label>
-                <textarea id="code_data" rows="15" readonly></textarea>
+            <div id="input_div" class="col-lg-5">
+                <label class="mt-2"> <h4> Input values : <small>(seperated by new line)</small> </h4></label>
+                <textarea id="input" rows="15" ></textarea>
             </div>
+        </div>
+        <hr>
+        <div class="row justify-content-around">
+            <div id="output_div" class="col-lg-5">
+                <label class="mt-2"> <h4> Output : </h4></label>
+                <textarea id="output" rows="15" readonly></textarea>
+            </div>
+            <div class="col-lg-5"></div>
         </div>
     </div>
 {% endblock content %}
