@@ -16,3 +16,14 @@ textarea {
 #code-img {
     display: none;
 }
+
+body {
+    background-color: black;
+    color: lightskyblue;
+}
+
+@media screen and (max-width:991px) {
+    .vl{
+        display: none;
+    }
+}

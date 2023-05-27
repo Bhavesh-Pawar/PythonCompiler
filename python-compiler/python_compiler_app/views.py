@@ -19,24 +19,25 @@ class IndexView(View):
             output = StringIO()
             sys.stdout = output
             code = request.POST.get('code')
-            # input_values = ["23"]
-            # input_index = 0
+            input_values = request.POST.get('input','')
+            input_values = [inp.strip() for inp in input_values.split('\n')]
+            input_index = 0
 
-            # def mock_input(*args, **kwargs):
-            #     nonlocal input_index
-            #     value = input_values[input_index]
-            #     input_index += 1
-            #     return value
+            def mock_input(*args, **kwargs):
+                nonlocal input_index
+                value = input_values[input_index]
+                input_index += 1
+                return value
 
-            # builtins = __import__('builtins')
-            # builtins.input = mock_input
+            builtins = __import__('builtins')
+            builtins.input = mock_input
             try:
                 exec(code)
             except Exception as error:
                 exception = error
             sys.stdout = output
             sys.stdout = sys.__stdout__
-            captured_output = output.getvalue()
+            captured_output = output.getvalue().strip()
             return JsonResponse({'output':f"{captured_output}{exception}"})
         else:
             return JsonResponse({'output':'No code entered'})
