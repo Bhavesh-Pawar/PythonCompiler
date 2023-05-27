@@ -5,7 +5,6 @@ from django.views import View
 from django.http.response import JsonResponse
 import sys
 from io import StringIO
-
 class IndexView(View):
     template_name = 'index.html'
 
@@ -15,23 +14,24 @@ class IndexView(View):
     def post(self,request,*args, **kwargs):
         action = request.POST.get('action','')
         if action:
-            exception = ""
-            output = StringIO()
-            sys.stdout = output
-            code = request.POST.get('code')
-            input_values = request.POST.get('input','')
-            input_values = [inp.strip() for inp in input_values.split('\n')]
-            input_index = 0
-
-            def mock_input(*args, **kwargs):
-                nonlocal input_index
-                value = input_values[input_index]
-                input_index += 1
-                return value
-
-            builtins = __import__('builtins')
-            builtins.input = mock_input
             try:
+                exception = ""
+                output = StringIO()
+                sys.stdout = output
+                code = request.POST.get('code')
+                input_values = request.POST.get('input','')
+                input_values = [inp.strip() for inp in input_values.split('\n')]
+                input_index = 0
+
+                def mock_input(*args, **kwargs):
+                    nonlocal input_index
+                    value = input_values[input_index]
+                    input_index += 1
+                    return value
+
+                builtins = __import__('builtins')
+                builtins.input = mock_input
+            
                 exec(code)
             except Exception as error:
                 exception = error
