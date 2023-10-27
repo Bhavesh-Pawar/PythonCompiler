@@ -7,10 +7,6 @@ services:
       dockerfile: Dockerfile
     ports:
       - 7009:7009
-    depends_on:
-      - db
-    environment:
-      - DATABASE_URL=postgres://postgres:password@db:5432/postgres
     volumes:
       - .:/code
     command: python manage.py runserver 0.0.0.0:7009
