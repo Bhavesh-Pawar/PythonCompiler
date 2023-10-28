@@ -5,4 +5,4 @@ from python_compiler_app.views import *
 
 urlpatterns = [
     path('',IndexView.as_view(),name='index')
-]+ static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+]
